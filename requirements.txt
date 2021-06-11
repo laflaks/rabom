@@ -1,0 +1,6 @@
+pytelegrambotapi
+wikipedia
+pyshorteners
+google_trans_new
+pyowm
+prettytable
