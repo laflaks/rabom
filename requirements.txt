@@ -1,6 +1,6 @@
 pytelegrambotapi
 wikipedia
 pyshorteners
-google_trans_new
+googletrans==3.1.0a0
 pyowm
 prettytable

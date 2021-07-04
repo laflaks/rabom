@@ -4,11 +4,11 @@ import telebot, random, config, wikipedia, pyshorteners, google_trans_new, time,
 from pyowm import OWM
 from telebot import types
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
-from google_trans_new import  google_translator
+from googletrans import Translator
 from functools import wraps
 s = pyshorteners.Shortener()
 wikipedia.set_lang('ru')
-translator = google_translator()
+translator = Translator()
 owm = OWM(config.API_KEY)
 owm.config['language'] = 'ru' 
 mgr = owm.weather_manager()
@@ -332,12 +332,12 @@ def get_text(message):
 		elif message.text == '◀️Назад':
 			bot.send_message(message.chat.id,'Вы вернулись в меню.', reply_markup = rabom_keyboard.translate_keyboard())
 		elif message.text != '🏠Меню':
-			result_rus = translator.translate(message.text, lang_src=str(mylang), lang_tgt=str(tolang))
-			bot.send_message(message.chat.id,result_rus)
+			result_rus = translator.translate(message.text, src=str(mylang), dest=str(tolang))
+			bot.send_message(message.chat.id,result_rus.text)
 			bot.register_next_step_handler(message, get_text);
 	except:
 		bot.send_message(message.chat.id,'Я не могу перевести этот текст!\nЛибо вы не выбрали язык ಠ_ಠ!')
-
+	
 def get_town(message):
 	try:
 		town = message.text
