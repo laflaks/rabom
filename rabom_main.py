@@ -196,7 +196,13 @@ def text_button_message(message):
 		bot.send_message(message.chat.id,'✏️Введите ваше сообщение:')
 		bot.register_next_step_handler(message, get_send);
 	elif message.text == '📟Перевод двоичного кода':
+		bot.send_message(message.chat.id,'❓Выберите путь', reply_markup = rabom_keyboard.code_keyboard())
+	elif message.text == 'Текст в код':
+		bot.send_message(message.chat.id,'✏️Введите ваш текст:')
+		bot.register_next_step_handler(message, get_code_text);
+	elif message.text == 'Код в текст':
 		bot.send_message(message.chat.id,'✏️Введите ваш код:')
+		bot.register_next_step_handler(message, get_code);
 	elif message.text.lower() == 'знаменск':
 		bot.send_sticker(message.chat.id,'CAACAgIAAxkBAAECKzhgdFcIvMtk8nBuzmw62EPkMdcDfgAC3AoAAv-ooEtnzxrHLeH5MB4E')
 		#bot.send_photo(message.chat.id, open('znamensk.jpg', 'rb'))
@@ -362,6 +368,20 @@ def get_max_random(message):
 	except:
 		bot.send_message(message.chat.id,'Я не знаю такой цифры ಠ_ಠ')
 		
+def get_code(message):
+	try:
+		code =''.join([chr(int(s, 2)) for s in message.text.split()])
+		bot.send_message(message.chat.id, code)
+	except:
+		bot.send_message(message.chat.id,'Что-то не так')
+
+def get_code_text(message):
+	try:
+		code_text = ' '.join(format(ord(x), 'b') for x in message.text)
+		bot.send_message(message.chat.id, code_text)
+	except:
+		bot.send_message(message.chat.id,'Что-то не так')
+
 def get_send(message):
 	try:
 		message_to_admin = str(message.text)
@@ -373,5 +393,7 @@ def get_send(message):
 		bot.send_message(moderator_id,f'💬Сообщение от:\n💳id: {user_id}\n🚹username: @{username}\nТекст сообщения: {message_to_admin}')
 	except:
 		bot.send_message(message.chat.id,'Я не могу такое отправить ಠ_ಠ')
+
+
 
 bot.polling(none_stop = True)

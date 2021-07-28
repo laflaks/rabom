@@ -54,6 +54,14 @@ def my_lang_keyboard():
     my_lang_keyboard.add(InlineKeyboardButton('Русский🇷🇺', callback_data ='ru'),InlineKeyboardButton('Русский🇷🇺', callback_data ='ru1'),InlineKeyboardButton('Казахский🇰🇿', callback_data ='kk'),InlineKeyboardButton('Казахский🇰🇿', callback_data ='kk1'),InlineKeyboardButton('Арабский🇦🇪', callback_data ='ar'),InlineKeyboardButton('Арабский🇦🇪', callback_data ='ar1'),InlineKeyboardButton('Японский🇯🇵', callback_data ='ja'),InlineKeyboardButton('Японский🇯🇵', callback_data ='ja1'),InlineKeyboardButton('Английский🇬🇧', callback_data ='en'),InlineKeyboardButton('Английский🇬🇧', callback_data ='en1'),InlineKeyboardButton('Китайский🇨🇳', callback_data ='zh_cn'),InlineKeyboardButton('Китайский🇨🇳', callback_data ='zh_cn1'),InlineKeyboardButton('Германский🇩🇪', callback_data ='de'),InlineKeyboardButton('Германский🇩🇪', callback_data ='de1'),InlineKeyboardButton('Польский🇵🇱', callback_data ='pl'),InlineKeyboardButton('Польский🇵🇱', callback_data ='pl1'),InlineKeyboardButton('Украинский🇺🇦', callback_data ='uk'),InlineKeyboardButton('Украинский🇺🇦', callback_data ='uk1'),InlineKeyboardButton('Персидский🇮🇷', callback_data ='fa'),InlineKeyboardButton('Персидский🇮🇷', callback_data ='fa1'),InlineKeyboardButton('Кыргызский🇰🇬', callback_data ='ky'),
 InlineKeyboardButton('Кыргызский🇰🇬', callback_data ='ky1'))
     return my_lang_keyboard
+
+def code_keyboard():
+    code_keyboard = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+    to_code_button = types.KeyboardButton('Текст в код')
+    to_text_button = types.KeyboardButton('Код в текст')
+    button1 = types.KeyboardButton('🏠Меню')
+    code_keyboard.add(to_code_button, to_text_button, button1)
+    return code_keyboard
     
 '''def step2(call):
     menu2 = telebot.types.InlineKeyboardMarkup()
